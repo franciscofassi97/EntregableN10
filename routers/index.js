@@ -20,9 +20,9 @@ fs.readdirSync(pathRouter).filter((file) => {
     }
 })
 
-router.get("/", (req, res) => {
-    res.redirect("/api/productos");
-});
+// router.get("/", (req, res) => {
+//     res.redirect("/api/productos");
+// });
 
 
 router.get('*', (req, res) => {

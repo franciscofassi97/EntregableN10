@@ -1,5 +1,7 @@
 const formProductos = (req, res) => {
-    res.render('formProducts');
+    const nombreUsuario = req.session.nombreUsuario;
+    console.log(nombreUsuario);
+    res.render('formProducts', { nombreUsuario });
 }
 
 module.exports = { formProductos };

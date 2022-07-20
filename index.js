@@ -8,15 +8,37 @@ const PORT = process.env.PORT || 8080;
 const { Server: HttpServer } = require('http');
 const httpServer = new HttpServer(app);
 
+//Session
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const MongoStore = require("connect-mongo");
+
+
 //Middleware
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(session({
+    store: new MongoStore({
+        mongoUrl: process.env.MONGO_DB,
+    }),
+    secret: "algunSecrete",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 600000, //10 minutos 
+    }
+}))
+
 
 //Incio sockets
 const io = require('./sockets');
 io(httpServer);
 
 
-//Configuracion de handlebars
+/*-----------------Inicio Configuracion de handlebars------------------*/
 const { engine } = require('express-handlebars');
 
 app.engine(
@@ -31,6 +53,11 @@ app.engine(
 
 app.set("view engine", "hbs");
 app.set("views", "./views");
+/*-----------------FIN Configuracion de handlebars------------------*/
+
+
+
+
 
 /*
 Uso de reutas dinamicas -----> https://github.com/leifermendez/node-seed-api/blob/main/app/routes/index.js
