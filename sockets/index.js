@@ -1,4 +1,5 @@
 const definirContenedor = require('../daos');
+const normalizarMensaje = require("../Normalizer");
 
 module.exports = (server) => {
     const { Server: IoServer } = require("socket.io");
@@ -10,12 +11,10 @@ module.exports = (server) => {
         const contenedorProductos = await definirContenedor("productos");
         const contenedorMensajes = await definirContenedor("mensajes");
 
-        // const mensajesNormalizado = normalizr.normalize(await contenedorMensajes.getAllData(), [mensajesSchema]);
-
-
         socket.emit("leerProductos", await contenedorProductos.getAllData());
 
-        // socket.emit("leerMensajes", mensajesNormalizado);
+        const mensajesNormalizado = normalizarMensaje(await contenedorMensajes.getAllData());
+        socket.emit("leerMensajes", mensajesNormalizado);
 
 
         //Prodcutos 
@@ -29,6 +28,8 @@ module.exports = (server) => {
         socket.on("agregarMensaje", async (mensaje) => {
             const idMensaje = await contenedorMensajes.save(mensaje);
             // const mensajesNormalizado = normalizr.normalize(await contenedorMensajes.getAllData(), [mensajesSchema]);
+
+            const mensajesNormalizado = normalizarMensaje(await contenedorMensajes.getAllData());
 
             if (idMensaje) ioSocket.sockets.emit("leerMensajes", mensajesNormalizado);
 

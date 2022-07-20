@@ -2,6 +2,7 @@ const socket = io();
 const btnCerrarSession = document.getElementById("btnCerrarSession");
 
 const autorSchema = new normalizr.schema.Entity("autor", {}, { idAttribute: "mail" });
+
 const mensajesSchema = new normalizr.schema.Entity("mensajes", {
   autor: autorSchema,
 });
@@ -63,23 +64,26 @@ const onMessage = () => {
 };
 
 socket.on("leerMensajes", (mensajes) => {
+  console.log('mensajes normalizados ', mensajes);
   const mensajesdesnormalizado = normalizr
     .denormalize(mensajes.result,
       [mensajesSchema],
       mensajes.entities
     );
 
+  console.log("Mensajes desnormalizados", mensajesdesnormalizado);
 
   if (mensajesdesnormalizado.length > 0) {
     document.getElementById("messagesDiv").innerHTML = "";
     document.getElementById("porcentajeDiv").innerHTML = "";
 
     for (let i = 0; i < mensajesdesnormalizado.length; i++) {
-      let mensaje = mensajesdesnormalizado[i];
+      let mensajeFor = mensajesdesnormalizado[i]._doc || mensajesdesnormalizado[i];
+      console.log('Mensaje en ciclo for', mensajeFor);
       let mensajeHTML = `
-      <p><spam><strong>${mensaje.autor.mail}</strong> </spam>
-      <spam class="date">${mensaje.date} </spam> :
-      <spam class="message">${mensaje.mensaje}</spam></p>
+      <p><spam><strong>${mensajeFor.autor.mail}</strong> </spam>
+      <spam class="date">${mensajeFor.date} </spam> :
+      <spam class="message">${mensajeFor.mensaje}</spam></p>
       `;
       document.getElementById("messagesDiv").innerHTML += mensajeHTML;
     }
