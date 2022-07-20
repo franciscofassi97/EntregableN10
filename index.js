@@ -4,8 +4,6 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-
-
 //Inicio servidor le paso app para sockets
 const { Server: HttpServer } = require('http');
 const httpServer = new HttpServer(app);
@@ -34,15 +32,15 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", "./views");
 
-
+/*
+Uso de reutas dinamicas -----> https://github.com/leifermendez/node-seed-api/blob/main/app/routes/index.js
+*/
+app.use('/api', require('./routers'))
 
 app.get("/", (req, res) => {
     res.redirect("/api/productos");
 });
 
-app.get("/api/productos", (req, res) => {
-    res.render("formProducts");
-});
 
 httpServer.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
