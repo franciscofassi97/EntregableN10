@@ -3,9 +3,9 @@ const prueba = (req, res) => {
 }
 
 const loginUser = (req, res) => {
-    const { nombreUsuario } = req.body;
-    if (nombreUsuario) {
-        req.session.nombreUsuario = nombreUsuario;
+    const { username } = req.body;
+    if (username) {
+        req.session.username = username;
         res.redirect("/api/productos");
     } else {
         res.redirect("/api/usuarios/login");
@@ -22,6 +22,20 @@ const logoutUser = (req, res) => {
             res.set({ 'Refresh': '3; url=/api/productos' });
         }
     });
+};
+
+const getFormRegistro = (req, res) => {
+    res.render('registroForm');
+};
+
+const registroUsuarioError = (req, res) => {
+    res.render("registroForm", { error: "El usuario ya existe" });
 }
 
-module.exports = { prueba, loginUser, logoutUser };
+module.exports = {
+    prueba,
+    loginUser,
+    logoutUser,
+    getFormRegistro,
+    registroUsuarioError
+};

@@ -4,6 +4,6 @@ const { formProductos } = require('../controllers/productosController');
 const { getUser } = require('../middleware');
 
 
-router.get('/', getUser, formProductos);
+router.get('/', formProductos);
 
 module.exports = router;

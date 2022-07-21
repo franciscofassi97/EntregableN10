@@ -14,6 +14,9 @@ const cookieParser = require("cookie-parser");
 const MongoStore = require("connect-mongo");
 
 
+
+
+
 //Middleware
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +35,11 @@ app.use(session({
     }
 }))
 
+
+//Passport 
+const passport = require('./passport')
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Incio sockets
 const io = require('./sockets');
@@ -54,10 +62,6 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", "./views");
 /*-----------------FIN Configuracion de handlebars------------------*/
-
-
-
-
 
 /*
 Uso de reutas dinamicas -----> https://github.com/leifermendez/node-seed-api/blob/main/app/routes/index.js
