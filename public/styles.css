@@ -1,15 +1,17 @@
-strong{
-    color: blue;
-}
-.box{
-    border:1px solid black;
-    margin: 5px;
-    padding: 5px;
+strong {
+	color: blue;
 }
 
-.date{
-    color: brown;
+.box {
+	border: 1px solid black;
+	margin: 5px;
+	padding: 5px;
 }
-.message{
-    color: green;
+
+.date {
+	color: brown;
+}
+
+.message {
+	color: green;
 }

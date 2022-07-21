@@ -14,11 +14,11 @@ router.post('/logout', logoutUser);
 
 router.get('/registro', getFormRegistro);
 router.post('/registro', passport.authenticate(
-    'registro',
-    {
-        failureRedirect: '/api/usuarios/registro/error',
-        failureMessage: true
-    }
+	'registro',
+	{
+		failureRedirect: '/api/usuarios/registro/error',
+		failureMessage: true
+	}
 ));
 
 router.get('/registro/error', registroUsuarioError);

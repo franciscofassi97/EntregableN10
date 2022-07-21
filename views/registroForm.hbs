@@ -1,25 +1,25 @@
 {{#if error }}
 <section>
-    <h1>Error al intentar Iniciar Sesion</h1>
-    <div class="box">
-        <p>{{error}}</p>
-        <button><a href="http://localhost:8080/api/usuarios/registro">Hola</a></button>
-    </div>
+	<h1>Error al intentar Iniciar Sesion</h1>
+	<div class="box">
+		<p>{{error}}</p>
+		<button><a href="http://localhost:8080/api/usuarios/registro">Hola</a></button>
+	</div>
 
 </section>
 {{else}}
 <section>
-    <h1>Iniciar Sesion</h1>
-    <div class="box">
-        {{!-- <form action="/api/productos/create" method="post"> --}}
-            <form action="/api/usuarios/registro" method="post">
-                <label for="username">Email</label>
-                <input type="text" name="username" placeholder="Ingrese Correo" id="username">
-                <label for="password">Password</label>
-                <input type="password" name="password" placeholder="Ingrese Correo" id="password">
-                <input type="submit" value="Iniciar">
-            </form>
-            <br>
-    </div>
+	<h1>Iniciar Sesion</h1>
+	<div class="box">
+		{{!-- <form action="/api/productos/create" method="post"> --}}
+			<form action="/api/usuarios/registro" method="post">
+				<label for="username">Email</label>
+				<input type="text" name="username" placeholder="Ingrese Correo" id="username">
+				<label for="password">Password</label>
+				<input type="password" name="password" placeholder="Ingrese Correo" id="password">
+				<input type="submit" value="Iniciar">
+			</form>
+			<br>
+	</div>
 </section>
 {{/if}}

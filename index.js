@@ -24,15 +24,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(session({
-    store: new MongoStore({
-        mongoUrl: process.env.MONGO_DB,
-    }),
-    secret: "algunSecrete",
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 600000, //10 minutos 
-    }
+	store: new MongoStore({
+		mongoUrl: process.env.MONGO_DB,
+	}),
+	secret: "algunSecrete",
+	resave: true,
+	saveUninitialized: true,
+	cookie: {
+		maxAge: 600000, //10 minutos 
+	}
 }))
 
 
@@ -50,13 +50,13 @@ io(httpServer);
 const { engine } = require('express-handlebars');
 
 app.engine(
-    "hbs",
-    engine({
-        extname: "hbs",
-        defaultLayout: "main",
-        layoutsDir: __dirname + "/views/layouts",
-        partialsDir: __dirname + "/views/partials"
-    })
+	"hbs",
+	engine({
+		extname: "hbs",
+		defaultLayout: "main",
+		layoutsDir: __dirname + "/views/layouts",
+		partialsDir: __dirname + "/views/partials"
+	})
 );
 
 app.set("view engine", "hbs");
@@ -69,12 +69,12 @@ Uso de reutas dinamicas -----> https://github.com/leifermendez/node-seed-api/blo
 app.use('/api', require('./routers'))
 
 app.get("/", (req, res) => {
-    res.redirect("/api/productos");
+	res.redirect("/api/productos");
 });
 
 
 httpServer.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+	console.log(`Server is running on port ${PORT}`);
 });
 
 

@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const autorSchema = require("./Autor");
 
 const mensajesSchema = new mongoose.Schema(
-    {
-        mensaje: { type: String },
-        autor: { type: autorSchema, _id: true },
-        date: { type: String },
-    },
-    { timestamps: true }
+	{
+		mensaje: { type: String },
+		autor: { type: autorSchema, _id: true },
+		date: { type: String },
+	},
+	{ timestamps: true }
 );
 
 
