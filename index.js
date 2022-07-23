@@ -29,9 +29,10 @@ app.use(session({
 	store: new MongoStore({
 		mongoUrl: process.env.MONGO_DB,
 	}),
-	secret: "algunSecrete",
+	secret: "algunSecreto",
 	resave: true,
-	saveUninitialized: true,
+	rolling: true,
+	saveUninitialized: false,
 	cookie: {
 		maxAge: 600000, //10 minutos 
 	}
