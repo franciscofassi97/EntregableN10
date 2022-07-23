@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { formProductos } = require('../controllers/productosController');
-const { getUser } = require('../middleware');
+const { estaAutenticado } = require('../middleware');
 
 
-router.get('/', formProductos);
+router.get('/', estaAutenticado, formProductos);
 
 module.exports = router;

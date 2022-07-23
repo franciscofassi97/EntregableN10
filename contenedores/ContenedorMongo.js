@@ -1,7 +1,3 @@
-const connectDB = require("../database");
-connectDB();
-
-
 class ContenedorMongo {
 
 	constructor(schema) {

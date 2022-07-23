@@ -1,9 +1,7 @@
-const getUser = (req, res, next) => {
-	if (req.session.nombreUsuario) {
-		next();
-	} else {
-		res.redirect("/api/usuarios/login");
-	}
-};
+const estaAutenticado = (req, res, next) => {
+	if (req.isAuthenticated()) return next();
+	res.redirect("/api/usuarios/login");
+}
 
-module.exports = { getUser };
+
+module.exports = { estaAutenticado };

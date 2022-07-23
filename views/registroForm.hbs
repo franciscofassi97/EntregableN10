@@ -1,15 +1,15 @@
 {{#if error }}
 <section>
-	<h1>Error al intentar Iniciar Sesion</h1>
+	<h1>Error al intentar Registrarse</h1>
 	<div class="box">
 		<p>{{error}}</p>
-		<button><a href="http://localhost:8080/api/usuarios/registro">Hola</a></button>
+		<button><a href="http://localhost:8080/api/usuarios/registro">Vovler</a></button>
 	</div>
 
 </section>
 {{else}}
 <section>
-	<h1>Iniciar Sesion</h1>
+	<h1>Registarse</h1>
 	<div class="box">
 		{{!-- <form action="/api/productos/create" method="post"> --}}
 			<form action="/api/usuarios/registro" method="post">
@@ -19,6 +19,7 @@
 				<input type="password" name="password" placeholder="Ingrese Correo" id="password">
 				<input type="submit" value="Iniciar">
 			</form>
+			<button><a href="http://localhost:8080/api/usuarios/login">Volver</a></button>
 			<br>
 	</div>
 </section>
